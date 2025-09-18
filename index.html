@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>XP Fenster</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="titlebar">
+    <span class="title">Mein XP Fenster</span>
+    <div class="buttons">
+      <button class="btn minimize">🗕</button>
+      <button class="btn maximize">🗖</button>
+      <button class="btn close">🗙</button>
+    </div>
+  </div>
+  <div class="content">
+    <h1>Hallo Windows XP 😎</h1>
+  </div>
+
+  <script>
+    document.querySelector(".minimize").onclick = () => window.api.controlWindow("minimize");
+    document.querySelector(".maximize").onclick = () => window.api.controlWindow("maximize");
+    document.querySelector(".close").onclick = () => window.api.controlWindow("close");
+  </script>
+</body>
+</html>

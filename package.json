@@ -1,0 +1,24 @@
+{
+  "name": "windowsxp-frame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanschmid08/WindowsXP-Frame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nathanschmid08/WindowsXP-Frame/issues"
+  },
+  "homepage": "https://github.com/nathanschmid08/WindowsXP-Frame#readme",
+  "devDependencies": {
+    "electron": "^38.1.2"
+  }
+}
