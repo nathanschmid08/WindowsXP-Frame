@@ -1,27 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* füllt das Fenster komplett */
-      display: block;
-    }
-  </style>
+body {
+  background: linear-gradient(180deg, 
+    #5eaefe 0%,
+    #5eaefe 45%,
+    #b7d8f5 50%,
+    #d9e9f7 55%,
+    #f0f7fc 70%,
+    #e8f2fb 85%,
+    #b3d4ed 100%
+  );
+  position: relative;
+}
+
+/* Windows XP Bliss hills effect */
+body::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(120, 180, 80, 0.15) 20%,
+    rgba(90, 160, 70, 0.25) 40%,
+    rgba(70, 140, 60, 0.35) 60%,
+    rgba(60, 130, 55, 0.45) 80%,
+    rgba(50, 120, 50, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* Soft cloud-like shapes */
+body::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: 
+    radial-gradient(ellipse 800px 150px at 20% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse 600px 120px at 70% 15%, rgba(255, 255, 255, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse 500px 100px at 40% 25%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.fish-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+</style>
 </head>
 <body>
+<div class="fish-container">
   <img src="src/fish.gif" alt="fish">
+</div>
 </body>
 </html>
