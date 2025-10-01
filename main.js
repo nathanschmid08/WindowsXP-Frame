@@ -3,8 +3,8 @@ const path = require("path");
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 400,
+    height: 300,
     frame: false, // entfernt alle nativen Ränder/Buttons
     titleBarStyle: "hiddenInset", // versteckt macOS Standard-Buttons
     trafficLightPosition: { x: -100, y: -100 }, // Mac-Buttons komplett raus

@@ -1,30 +1,293 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>XP Fenster</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WindowsXP Frame</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", Tahoma, sans-serif;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: #245edb;
+}
+
+.xp-window {
+  border: 5px solid;
+  border-color: #0831d9 #0831d9 #001ea0 #001ea0;
+  box-shadow: 
+    inset 1px 1px 0 #6593ff,
+    inset 2px 2px 0 #4b7cd6,
+    inset -1px -1px 0 #001050,
+    0 0 0 1px #000;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #0053ee;
+}
+
+.xp-titlebar {
+  background: linear-gradient(to bottom, 
+    #0997ff 0%,
+    #0053ee 3%,
+    #0050ee 5%,
+    #06f 8%,
+    #06f 40%,
+    #06f 60%,
+    #0353ee 92%,
+    #0050ee 95%,
+    #003dd7 100%
+  );
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 0 8px 0 6px;
+  font-size: 13px;
+  font-weight: bold;
+  -webkit-app-region: drag;
+  flex-shrink: 0;
+  user-select: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid #003dd7;
+}
+
+.xp-title {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.xp-buttons {
+  display: flex;
+  gap: 2px;
+  -webkit-app-region: no-drag;
+  flex-shrink: 0;
+}
+
+.xp-btn {
+  width: 21px;
+  height: 21px;
+  border: 1px solid;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1px;
+  position: relative;
+}
+
+/* Minimize button */
+.xp-btn.minimize {
+  background: linear-gradient(180deg, 
+    #d6e7f9 0%,
+    #c0dbf4 5%,
+    #7db4ea 40%,
+    #4e92e2 50%,
+    #1771d7 51%,
+    #1663c6 100%
+  );
+  border-color: #003c74 #74aee6 #74aee6 #003c74;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.xp-btn.minimize:hover {
+  background: linear-gradient(180deg, 
+    #eaf3fc 0%,
+    #d8ebf8 5%,
+    #9ac7f2 40%,
+    #6ba8ea 50%,
+    #3288e5 51%,
+    #2875d4 100%
+  );
+}
+
+.xp-btn.minimize:active {
+  background: linear-gradient(180deg, 
+    #4e92e2 0%,
+    #1771d7 50%,
+    #7db4ea 51%,
+    #c0dbf4 100%
+  );
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Maximize button */
+.xp-btn.maximize {
+  background: linear-gradient(180deg, 
+    #d6e7f9 0%,
+    #c0dbf4 5%,
+    #7db4ea 40%,
+    #4e92e2 50%,
+    #1771d7 51%,
+    #1663c6 100%
+  );
+  border-color: #003c74 #74aee6 #74aee6 #003c74;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.xp-btn.maximize:hover {
+  background: linear-gradient(180deg, 
+    #eaf3fc 0%,
+    #d8ebf8 5%,
+    #9ac7f2 40%,
+    #6ba8ea 50%,
+    #3288e5 51%,
+    #2875d4 100%
+  );
+}
+
+.xp-btn.maximize:active {
+  background: linear-gradient(180deg, 
+    #4e92e2 0%,
+    #1771d7 50%,
+    #7db4ea 51%,
+    #c0dbf4 100%
+  );
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button */
+.xp-btn.close {
+  background: linear-gradient(180deg, 
+    #fcbeb7 0%,
+    #f6a89e 5%,
+    #f17a6e 40%,
+    #ec5848 50%,
+    #df3b2c 51%,
+    #d43425 100%
+  );
+  border-color: #8b1a10 #f7a49a #f7a49a #8b1a10;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.6);
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.xp-btn.close:hover {
+  background: linear-gradient(180deg, 
+    #ffd7d2 0%,
+    #fcc4bc 5%,
+    #fa9b8e 40%,
+    #f8735f 50%,
+    #f5573f 51%,
+    #ed4c38 100%
+  );
+}
+
+.xp-btn.close:active {
+  background: linear-gradient(180deg, 
+    #ec5848 0%,
+    #df3b2c 50%,
+    #f17a6e 51%,
+    #f6a89e 100%
+  );
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.xp-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+  border: 2px solid;
+  border-color: #fff #888 #888 #fff;
+  margin: 4px;
+  background: #fff;
+}
+
+.xp-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: white;
+}
+</style>
 </head>
 <body>
-    <div class="xp-window">
-      <div class="xp-titlebar">
-        <span class="xp-title">System Properties</span>
-        <div class="xp-buttons">
-          <button class="xp-btn minimize">_</button>
-          <button class="xp-btn maximize">☐</button>
-          <button class="xp-btn close">X</button>
-        </div>
-      </div>
-      <div class="xp-content">
-        <h2>Hallo Windows XP!</h2>
-        <p>Hier könnte dein Inhalt stehen.</p>
-      </div>
+<div class="xp-window">
+  <div class="xp-titlebar">
+    <span class="xp-title">WindowsXP Frame</span>
+    <div class="xp-buttons">
+      <button class="xp-btn minimize" title="Minimieren">
+        <span style="font-size: 16px; margin-top: -6px;">_</span>
+      </button>
+      <button class="xp-btn maximize" title="Maximieren">
+        <span style="font-size: 13px; font-weight: bold;">□</span>
+      </button>
+      <button class="xp-btn close" title="Schließen">
+        <span style="font-size: 16px; font-weight: normal;">✕</span>
+      </button>
     </div>
-  
-    <script>
-      document.querySelector(".minimize").onclick = () => window.api.controlWindow("minimize");
-      document.querySelector(".maximize").onclick = () => window.api.controlWindow("maximize");
-      document.querySelector(".close").onclick = () => window.api.controlWindow("close");
-    </script>
-  </body>  
+  </div>
+  <div class="xp-content">
+    <iframe src="content/index.html" sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+  </div>
+</div>
+
+<script>
+// Window controls
+const minimizeBtn = document.querySelector(".minimize");
+const maximizeBtn = document.querySelector(".maximize");
+const closeBtn = document.querySelector(".close");
+
+if (minimizeBtn) {
+  minimizeBtn.onclick = () => {
+    if (window.api && window.api.controlWindow) {
+      window.api.controlWindow("minimize");
+    }
+  };
+}
+
+if (maximizeBtn) {
+  maximizeBtn.onclick = () => {
+    if (window.api && window.api.controlWindow) {
+      window.api.controlWindow("maximize");
+    }
+  };
+}
+
+if (closeBtn) {
+  closeBtn.onclick = () => {
+    if (window.api && window.api.controlWindow) {
+      window.api.controlWindow("close");
+    }
+  };
+}
+
+// Handle window resize to ensure iframe stays properly sized
+window.addEventListener('resize', () => {
+  // The CSS flexbox handles this automatically
+});
+
+// Optional: Listen for maximize/unmaximize state changes from Electron
+if (window.api && window.api.onMaximizeChange) {
+  window.api.onMaximizeChange((isMaximized) => {
+    const maxSymbol = maximizeBtn.querySelector('span');
+    if (maxSymbol) {
+      maxSymbol.textContent = isMaximized ? '❐' : '□';
+    }
+  });
+}
+</script>
+</body>
 </html>
